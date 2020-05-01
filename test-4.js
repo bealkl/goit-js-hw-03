@@ -1,4 +1,5 @@
 //GOIT javascript homework 03 task 4
+
 'use strict';
 
 const countTotalSalary = function (employees) {
