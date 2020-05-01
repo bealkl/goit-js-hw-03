@@ -1,4 +1,5 @@
 //GOIT javascript homework 03 task 3
+
 'use strict';
 
 const findBestEmployee = function (employees) {
