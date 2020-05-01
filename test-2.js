@@ -1,4 +1,5 @@
 //GOIT javascript homework 03 task 2
+
 'use strict';
 
 const countProps = function (obj) {
