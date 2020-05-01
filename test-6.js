@@ -1,4 +1,5 @@
 //GOIT javascript homework 03 task 6
+
 'use strict';
 
 const products = [
