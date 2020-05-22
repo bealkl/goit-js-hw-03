@@ -27,8 +27,13 @@ const account = {
    * Принимает сумму и тип транзакции.
    */
   createTransaction(amount, type) {
+    let makeTrasaction = [];
     const maxID = this.transactions.length;
-    this.transactions[maxID] = { type: type, amount: amount };
+    makeTrasaction.ID = maxID;
+    makeTrasaction.amount = amount;
+    makeTrasaction.type = type;
+
+    return makeTrasaction;
   },
 
   /*
@@ -39,7 +44,7 @@ const account = {
    */
   deposit(amount) {
     this.balance += amount;
-    this.createTransaction(amount, Transaction.DEPOSIT);
+    this.transactions.push(this.createTransaction(amount, Transaction.DEPOSIT));
   },
 
   /*
@@ -52,8 +57,12 @@ const account = {
    * о том, что снятие такой суммы не возможно, недостаточно средств.
    */
   withdraw(amount) {
+    if (amount > this.balance) {
+      console.log(`Cannot make transaction with ${amount}. Balance = ${this.balance}`);
+      return -1;
+    }
     this.balance -= amount;
-    this.createTransaction(amount, Transaction.WITHDRAW);
+    this.transactions.push(this.createTransaction(amount, Transaction.WITHDRAW));
   },
 
   /*
@@ -87,27 +96,33 @@ const account = {
 
 // const z = account;
 
-// console.log(z.getBalance());
+// console.log('Balance = ', z.getBalance());
+
 // z.deposit(10);
-// console.log(z.getBalance());
-// // console.table(z.transactions);
-// z.deposit(12);
-// console.log(z.getBalance());
-// // console.table(z.transactions);
-// z.withdraw(11);
-// console.log(z.getBalance());
-// // console.table(z.transactions);
-// z.deposit(9);
-// console.log(z.getBalance());
-// // console.table(z.transactions);
-// z.withdraw(4);
-// console.log(z.getBalance());
-
 // console.table(z.transactions);
+// console.log('Balance = ', z.getBalance());
 
-// console.log(z.getBalance());
+// z.deposit(12);
+// console.table(z.transactions);
+// console.log('Balance = ', z.getBalance());
+
+// z.withdraw(11);
+// console.table(z.transactions);
+// console.log('Balance = ', z.getBalance());
+
+// z.deposit(9);
+// console.table(z.transactions);
+// console.log('Balance = ', z.getBalance());
+
+// z.withdraw(4000);
+// console.table(z.transactions);
+// console.log('Balance = ', z.getBalance());
+
+// z.withdraw(4);
+// console.table(z.transactions);
+// console.log('Balance = ', z.getBalance());
 
 // console.log(z.getTransactionDetails(2));
 
-// console.log(z.getTransactionTotal('deposit'));
-// console.log(z.getTransactionTotal('withdraw'));
+// console.log('Deposits  = ', z.getTransactionTotal('deposit'));
+// console.log('Withdraws = ', z.getTransactionTotal('withdraw'));
